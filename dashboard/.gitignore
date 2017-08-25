@@ -1,4 +1,9 @@
-target/
+target/classes/
+target/test-classes/
+target/maven-status/
+target/**/*.xml
+target/**/*.txt
+target/**/*.properties
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
