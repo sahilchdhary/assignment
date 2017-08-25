@@ -27,7 +27,7 @@ public class ScoreService
 	private static final String SCORE_MINUTE = "scoreMinute";
 	private static final String TEAM_NAME = "teamName";
 	private static final String PLAYER_NAME = "playerName";
-	private static final String NO_GAME_IN_PROGRESS = "No Game in Progress";
+	private static final String NO_GAME_IN_PROGRESS = "No game currently in progress";
 
 	private final GameRepository gameRepository;
 
@@ -63,7 +63,7 @@ public class ScoreService
 		}
 		else
 		{
-			throw new FootballGameException("No Game in Progress");
+			throw new FootballGameException(NO_GAME_IN_PROGRESS);
 		}
 	}
 

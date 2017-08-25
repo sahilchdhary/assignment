@@ -1,6 +1,10 @@
 package com.expedia.assignment.dashboard.service;
 
+import java.util.Optional;
+
+import com.expedia.assignment.dashboard.domain.Game;
 import com.expedia.assignment.dashboard.exception.FootballGameException;
+import com.expedia.assignment.dashboard.repository.GameRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(SpringRunner.class)
@@ -20,7 +25,11 @@ public class CommandServiceTest
 	@Mock
 	private GameService gameService;
 	@Mock
+	private GameRepository gameRepository;
+	@Mock
 	private ScoreService scoreService;
+	@Mock
+	public Game runningGame;
 
 	@Test
 	public void shouldStartGame()
@@ -65,6 +74,8 @@ public class CommandServiceTest
 	@Test(expected = FootballGameException.class)
 	public void shouldThrowExceptionOnInvalidCommand()
 	{
+		//Given
+		when(gameRepository.getRunningGame()).thenReturn(Optional.of(runningGame));
 		//When
 		final String printStringCommand = "Swim";
 		commandService.executeCommand(printStringCommand);

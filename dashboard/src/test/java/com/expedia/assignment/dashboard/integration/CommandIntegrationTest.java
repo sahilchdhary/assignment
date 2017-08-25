@@ -1,8 +1,9 @@
-package com.expedia.assignment.dashboard.service;
+package com.expedia.assignment.dashboard.integration;
 
 import com.expedia.assignment.dashboard.DashboardApplication;
 import com.expedia.assignment.dashboard.domain.Game;
 import com.expedia.assignment.dashboard.repository.GameRepository;
+import com.expedia.assignment.dashboard.service.CommandService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -61,7 +61,7 @@ public class GameService
 		}
 		else
 		{
-			throw new FootballGameException("No Game in Progress");
+			throw new FootballGameException("No game currently in progress");
 		}
 	}
 

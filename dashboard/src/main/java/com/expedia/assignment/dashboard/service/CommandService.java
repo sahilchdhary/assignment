@@ -1,13 +1,14 @@
 package com.expedia.assignment.dashboard.service;
 
 import com.expedia.assignment.dashboard.exception.FootballGameException;
+import com.expedia.assignment.dashboard.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import static com.expedia.assignment.dashboard.util.CommandPatternConstants.END_GAME_COMMAND_PATTERN;
 import static com.expedia.assignment.dashboard.util.CommandPatternConstants.PRINT_SCORE_COMMAND_PATTERN;
-import static com.expedia.assignment.dashboard.util.CommandPatternConstants.UPDATE_SCORE_COMMAND_PATTERN;
 import static com.expedia.assignment.dashboard.util.CommandPatternConstants.START_GAME_COMMAND_PATTERN;
+import static com.expedia.assignment.dashboard.util.CommandPatternConstants.UPDATE_SCORE_COMMAND_PATTERN;
 
 
 /**
@@ -19,6 +20,7 @@ public class CommandService
 {
 	private final GameService gameService;
 	private final ScoreService scoreService;
+	private final GameRepository gameRepository;
 
 	public void executeCommand(final String inputStringCommand)
 	{
@@ -38,9 +40,14 @@ public class CommandService
 		{
 			gameService.endGame();
 		}
+		else if (gameRepository.getRunningGame().isPresent())
+		{
+			throw new FootballGameException("input error - please type 'print' for game details");
+		}
 		else
 		{
-			throw new FootballGameException("Please enter a valid Command!");
+			throw new FootballGameException(
+					"input error - please start a game through typing 'Start: '<Name of Home Team>' vs. '<Name of Away Team>'");
 		}
 	}
 }
