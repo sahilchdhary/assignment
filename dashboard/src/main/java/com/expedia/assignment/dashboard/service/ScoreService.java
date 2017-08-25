@@ -14,7 +14,7 @@ import com.expedia.assignment.dashboard.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import static com.expedia.assignment.dashboard.util.CommandPatternConstants.REGISTER_GOAL_COMMAND_PATTERN;
+import static com.expedia.assignment.dashboard.util.CommandPatternConstants.UPDATE_SCORE_COMMAND_PATTERN;
 
 
 /**
@@ -27,7 +27,7 @@ public class ScoreService
 	private static final String SCORE_MINUTE = "scoreMinute";
 	private static final String TEAM_NAME = "teamName";
 	private static final String PLAYER_NAME = "playerName";
-	public static final String NO_GAME_IN_PROGRESS = "No Game in Progress";
+	private static final String NO_GAME_IN_PROGRESS = "No Game in Progress";
 
 	private final GameRepository gameRepository;
 
@@ -121,7 +121,7 @@ public class ScoreService
 	private Map<String, String> getGoalInfo(final String updateScoreCommandString)
 	{
 		final Map<String, String> goalInfoMap = new HashMap<>();
-		final Matcher matcher = Pattern.compile(REGISTER_GOAL_COMMAND_PATTERN).matcher(updateScoreCommandString);
+		final Matcher matcher = Pattern.compile(UPDATE_SCORE_COMMAND_PATTERN).matcher(updateScoreCommandString);
 		matcher.find();
 		goalInfoMap.put(SCORE_MINUTE, matcher.group(SCORE_MINUTE));
 		goalInfoMap.put(TEAM_NAME, matcher.group(TEAM_NAME));

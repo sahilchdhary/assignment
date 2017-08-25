@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import static com.expedia.assignment.dashboard.util.CommandPatternConstants.END_GAME_COMMAND_PATTERN;
 import static com.expedia.assignment.dashboard.util.CommandPatternConstants.PRINT_SCORE_COMMAND_PATTERN;
-import static com.expedia.assignment.dashboard.util.CommandPatternConstants.REGISTER_GOAL_COMMAND_PATTERN;
+import static com.expedia.assignment.dashboard.util.CommandPatternConstants.UPDATE_SCORE_COMMAND_PATTERN;
 import static com.expedia.assignment.dashboard.util.CommandPatternConstants.START_GAME_COMMAND_PATTERN;
 
 
@@ -26,7 +26,7 @@ public class CommandService
 		{
 			gameService.startGame(inputStringCommand);
 		}
-		else if (inputStringCommand.matches(REGISTER_GOAL_COMMAND_PATTERN))
+		else if (inputStringCommand.matches(UPDATE_SCORE_COMMAND_PATTERN))
 		{
 			scoreService.updateScore(inputStringCommand);
 		}
